@@ -1,0 +1,17 @@
+[
+    {
+        "codigo":1,
+        "descripcion":"Clientes",
+        "valor": "[Dim Clientes].[Dim Clientes Compania]"
+    },
+    {
+        "codigo":2,
+        "descripcion":"Producto",
+        "valor": "[Dim Producto].[Dim Producto Nombre]"
+    },
+    {
+        "codigo":3,
+        "descripcion":"Empleado",
+        "valor": "[Dim Empleado].[Dim Empleado Nombre Completo]"
+    }
+]

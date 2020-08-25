@@ -1,0 +1,14 @@
+[
+    {
+        "value":3,
+        "label":"Top 3"
+    },
+    {
+        "value":5,
+        "label":"Top 5"
+    },
+    {
+        "value":10,
+        "label":"Top 10"
+    }
+]

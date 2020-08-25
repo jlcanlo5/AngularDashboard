@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {HttpClientModule} from '@angular/common/http';
 
 //Módulos
 import { AppRoutingModule } from './app-routing.module'
@@ -17,6 +18,7 @@ import { NopagefoundComponent } from './nopagefound/nopagefound.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     PagesModule,
     AuthModule
   ],
