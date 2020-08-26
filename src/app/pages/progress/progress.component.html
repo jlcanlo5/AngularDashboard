@@ -35,7 +35,7 @@
                                         <div class="m-r-20 align-self-center"><img src="../assets/images/icon/income.png" alt="Income" /></div>
                                         <div class="align-self-center">
                                             <h6 class="text-muted m-t-10 m-b-0">Ventas totales</h6>
-                                            <h2 class="m-t-0">{{title}}</h2></div>
+                                            <h2 class="m-t-0">{{totalVentas}}</h2></div>
                                     </div>
                                 </div>
                             </div>
@@ -55,24 +55,41 @@
                         <div class="col-lg-3">
                             <div class="card">
                                 <div class="card-body">
-                                    <div class="d-flex">
-                                        <div class="m-r-20 align-self-center"><img src="../assets/images/icon/assets.png" alt="Income" /></div>
                                         <div class="align-self-center">
-                                            <h6 class="text-muted m-t-10 m-b-0">Total Assets</h6>
-                                            <h2 class="m-t-0">987,563</h2></div>
-                                    </div>
+                                            <ng-select [items]="mesAnio1$ | async"
+                                                [searchable]="true"
+                                                bindLabel="descripcion"
+                                                placeHolder="Mes"
+                                                [clearable]="true"
+                                                (change)="mesAnio1_OnChange($event)"
+                                                (clear)="dimension_OnClear($event)"
+                                                [(ngModel)]="mes1Seleccionado">
+                                            </ng-select>
+
+                                            <h6 class="text-muted m-t-10 m-b-0">Total ventas {{labelMesAnio1}}</h6>
+                                            <h2 class="m-t-0">{{ventasMesAnio1}}</h2>
+                                        </div>
                                 </div>
                             </div>
                         </div>
+                        
                         <div class="col-lg-3">
                             <div class="card">
                                 <div class="card-body">
-                                    <div class="d-flex">
-                                        <div class="m-r-20 align-self-center"><img src="../assets/images/icon/staff.png" alt="Income" /></div>
                                         <div class="align-self-center">
-                                            <h6 class="text-muted m-t-10 m-b-0">Total Staff</h6>
-                                            <h2 class="m-t-0">987,563</h2></div>
-                                    </div>
+                                            <ng-select [items]="mesAnio2$ | async"
+                                                [searchable]="true"
+                                                bindLabel="descripcion"
+                                                placeHolder="Mes"
+                                                [clearable]="true"
+                                                (change)="mesAnio2_OnChange($event)"
+                                                (clear)="dimension_OnClear($event)"
+                                                [(ngModel)]="mes2Seleccionado">
+                                            </ng-select>
+
+                                            <h6 class="text-muted m-t-10 m-b-0">Total ventas {{labelMesAnio2}}</h6>
+                                            <h2 class="m-t-0">{{ventasMesAnio2}}</h2>
+                                        </div>
                                 </div>
                             </div>
                         </div>
@@ -182,13 +199,13 @@
 
                   
                 <ng-select [items]="top$ | async"
-                [searchable]="true"
-                bindLabel="label"
-                placeHolder="Top"
-                [clearable]="true"
-                (change)="top_OnChange($event)"
-                (clear)="top_OnClear($event)"
-                [(ngModel)]="topSelected">
+                    [searchable]="true"
+                    bindLabel="label"
+                    placeHolder="Top"
+                    [clearable]="true"
+                    (change)="top_OnChange($event)"
+                    (clear)="top_OnClear($event)"
+                    [(ngModel)]="topSelected">
                 </ng-select>
 
                 <br>

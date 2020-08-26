@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {environment} from '../../environments/environment'
+import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 
 const URL_BASE = environment.ENDPOINTS.CUBO.urlBase;
@@ -35,5 +35,14 @@ export class ConsultasCuboService {
 
   getVentasPorMes(mes: string, anio: string){
     return this.http.get(`${URL_BASE}/VentasAnios/[${mes}]/[${anio}]`);
+  }
+
+  getMesesTexto(){
+    //return this.http.get(`${URL_BASE}/ventas/AniosMeses`);
+    return this.http.get('assets/json/meses.json');
+  }
+
+  getAniosTexto(){
+    return this.http.get('assets/json/anios.json');
   }
 }
