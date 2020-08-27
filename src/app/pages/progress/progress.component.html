@@ -32,7 +32,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="d-flex">
-                                        <div class="m-r-20 align-self-center"><img src="../assets/images/icon/income.png" alt="Income" /></div>
+                                        <div class="m-r-20 align-self-center"><img src="../assets/images/icon/staff.png" alt="Income" /></div>
                                         <div class="align-self-center">
                                             <h6 class="text-muted m-t-10 m-b-0">Ventas totales</h6>
                                             <h2 class="m-t-0">{{totalVentas}}</h2></div>
@@ -40,18 +40,29 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="col-lg-3">
                             <div class="card">
                                 <div class="card-body">
-                                    <div class="d-flex">
-                                        <div class="m-r-20 align-self-center"><img src="../assets/images/icon/expense.png" alt="Income" /></div>
                                         <div class="align-self-center">
-                                            <h6 class="text-muted m-t-10 m-b-0">Total Expense</h6>
-                                            <h2 class="m-t-0">236,000</h2></div>
-                                    </div>
+                                            <ng-select
+                                                [items]="anioFiltro$ | async"
+                                                [multiple]="true"
+                                                [closeOnSelect]="false"
+                                                [searchable]="false"
+                                                bindLabel="anio"
+                                                placeholder="Seleccionar año"
+                                                (change)="anioFiltro_onChange($event)"
+                                                [(ngModel)]="anioFiltroSeleccionado">
+                                            </ng-select>
+
+                                            <h6 class="text-muted m-t-10 m-b-0">Total ventas</h6>
+                                            <h2 class="m-t-0">$ {{aniosFiltros}}</h2>
+                                        </div>
                                 </div>
                             </div>
                         </div>
+                        
                         <div class="col-lg-3">
                             <div class="card">
                                 <div class="card-body">

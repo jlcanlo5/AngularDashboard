@@ -1,8 +1,5 @@
-export interface MesesModels {
-        codigo?: string;
-        descripcion?: string;
-        categoria?: string;
-        proveedor?: string;
-        provDescr?: string;
-        precio?: number;
+export interface AniosModels {
+        anios?: string;
+        datos?: string;
+        obtenerTotal?: string;
 }

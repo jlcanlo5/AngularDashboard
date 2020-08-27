@@ -2,6 +2,10 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router'
+
+import { AppRoutingModule } from '../app-routing.module';
+import { PagesRoutingModule } from './pages.routing'
+
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProgressComponent } from './progress/progress.component';
 import { Grafica1Component } from './grafica1/grafica1.component';
@@ -25,7 +29,9 @@ import { NgSelectModule } from '@ng-select/ng-select';
     RouterModule,
     ChartsModule,
     NgSelectModule,
-    FormsModule
+    FormsModule,
+    AppRoutingModule,
+    PagesRoutingModule
   ],
   exports: [
     DashboardComponent,

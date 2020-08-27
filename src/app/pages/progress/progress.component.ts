@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
 import { ConsultasCuboService } from '../../services/consultas-cubo.service'
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 //Charts
 import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
@@ -20,6 +21,10 @@ export class ProgressComponent implements OnInit {
   @Input() ventasMesAnio2: string = '175';
   @Input() labelMesAnio1: string = 'July 1996'
   @Input() labelMesAnio2: string = 'May 1998'
+  @Input() aniosFiltros: any = "prueba"
+
+  //Inicia combo de selección múltiple
+
 
 //Inicia gráfica
   public barChartOptions: ChartOptions = {
@@ -33,12 +38,15 @@ export class ProgressComponent implements OnInit {
       }
     }
   };
-  public barChartLabels: Label[] = [];
+  public barChartLabels: Label[] = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
   public barChartType: ChartType = 'bar';
   public barChartLegend = true;
   public barChartPlugins = [pluginDataLabels];
 
-  public barChartData: ChartDataSets[] = [];
+  public barChartData: ChartDataSets[] = [
+    { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
+    { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' }
+  ];
 
   //Nuestro servicio se está inyectando como dependencia en el componente
   constructor(private cuboService: ConsultasCuboService){
@@ -56,6 +64,10 @@ export class ProgressComponent implements OnInit {
   anio1Seleccionado: any={};
   mes2Seleccionado: any={};
   anio2Seleccionado: any={};
+
+  anioFiltro$: Observable<any>;
+  anioFiltroSeleccionado: any={};
+
   dimensionSelected: any = {};
   topSelected: any = {};
 
@@ -77,7 +89,7 @@ export class ProgressComponent implements OnInit {
     this.mes1Seleccionado={
       mes:'May',
       anio:'1998',
-      descripcion: 'Mayo 1998'
+      descripcion: 'May 1998'
     }
 
     this.mes2Seleccionado={
@@ -85,10 +97,17 @@ export class ProgressComponent implements OnInit {
       anio:'1996',
       descripcion: 'July 1996'
     }
+
+    //Para combo y filtros de año múltiple
+    this.anioFiltroSeleccionado=[{anio: '1996'}]
+
     this.fetchCharts(this.topSelected.value, this.dimensionSelected.valor)
     this.fetchVentasTotales()
     this.fetchMesAnio1(this.mes1Seleccionado.mes, this.mes1Seleccionado.anio)
     this.fetchMesAnio2(this.mes2Seleccionado.mes, this.mes2Seleccionado.anio)
+    this.fetchFiltroMultiple()
+    //this.fetchFiltroAnio(this.anioFiltroSeleccionado.anio, this.anioFiltroSeleccionado.anio, this.anioFiltroSeleccionado.anio)
+    this.fetchFiltroAnio('1996','0','0')
   }
 
   dimension_OnChange($event){
@@ -115,15 +134,31 @@ export class ProgressComponent implements OnInit {
     this.fetchMesAnio2(this.mes2Seleccionado.mes, this.mes2Seleccionado.anio)
   }
 
+  anioFiltro_onChange($event){
+    //this.fetchFiltroAnio(this.anioFiltroSeleccionado.anio[0], this.anioFiltroSeleccionado.anio[1], this.anioFiltroSeleccionado.anio[2] )
+    console.log("Array temporal", this.anioFiltroSeleccionado)
+    if (this.anioFiltroSeleccionado.length===3){
+      this.fetchFiltroAnio(this.anioFiltroSeleccionado[0].anio, this.anioFiltroSeleccionado[1].anio, this.anioFiltroSeleccionado[2].anio)
+    }
+    if (this.anioFiltroSeleccionado.length===2){
+      this.fetchFiltroAnio(this.anioFiltroSeleccionado[0].anio, this.anioFiltroSeleccionado[1].anio, '0')
+    }
+    if (this.anioFiltroSeleccionado.length===1){
+      this.fetchFiltroAnio(this.anioFiltroSeleccionado[0].anio, '0', '0')
+    }
+    if (this.anioFiltroSeleccionado.length===0){
+      this.fetchFiltroAnio('0', '0', '0')
+    }
+    
+  }
+
   fetchCharts(topValue: number, dimensionValue: string){
     this.cuboService.getDataTopN(topValue, dimensionValue, 'DESC').subscribe((result: any) => {
       console.log('LLAMADA A API NORTHWIND ---> ', result)
-      console.log("Valor del combo", topValue, dimensionValue)
-      let arrayTmp: any[]=[]
+      /*let arrayTmp: any[]=[]
       result.dimension.forEach(item => {
         arrayTmp.push()
-        
-      });
+      });*/
 
       this.barChartLabels=result.dimension;
 
@@ -162,6 +197,20 @@ export class ProgressComponent implements OnInit {
       this.labelMesAnio2=(this.mes2Seleccionado.descripcion)
       return ventasMesAnio
     })
+  }
+
+  fetchFiltroAnio(anio1: string, anio2: string, anio3:string){
+    this.cuboService.getFiltrosAnio(anio1, anio2, anio3).subscribe((result: any) => {
+      let ventasFiltroMultiple
+      ventasFiltroMultiple=result.anio
+      this.aniosFiltros=ventasFiltroMultiple
+      console.log ("Años filtrados", ventasFiltroMultiple)
+      return ventasFiltroMultiple
+    })
+  }
+
+  fetchFiltroMultiple(){
+    this.anioFiltro$=this.cuboService.getAniosTexto();
   }
 
   fetchDimensions(){
