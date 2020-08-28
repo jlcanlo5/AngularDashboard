@@ -17,6 +17,7 @@ import { ChartsModule } from 'ng2-charts';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { Grafica2Component } from './grafica2/grafica2.component';
 import { BarrasComponent } from './barras/barras.component';
+import { MultipleComponent } from './multiple/multiple.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { BarrasComponent } from './barras/barras.component';
     Grafica1Component,
     PagesComponent,
     Grafica2Component,
-    BarrasComponent
+    BarrasComponent,
+    MultipleComponent
   ],
   imports: [
     CommonModule,
