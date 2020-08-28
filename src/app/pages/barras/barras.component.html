@@ -1,0 +1,39 @@
+<ng-select [items]="dimension$ | async"
+                    [searchable]="true"
+                    bindLabel="descripcion"
+                    placeHolder="Dimension"
+                    [clearable]="true"
+                    (change)="dimension_OnChange($event)"
+                    (clear)="dimension_OnClear($event)"
+                    [(ngModel)]="dimensionSelected">
+                  </ng-select>
+
+                  
+                <ng-select [items]="top$ | async"
+                    [searchable]="true"
+                    bindLabel="label"
+                    placeHolder="Top"
+                    [clearable]="true"
+                    (change)="top_OnChange($event)"
+                    (clear)="top_OnClear($event)"
+                    [(ngModel)]="topSelected">
+                </ng-select>
+
+                <br>
+                  <br>
+                  <br>
+
+                    <div>
+                        <div>
+                          <div style="display: block">
+                            <canvas baseChart
+                              [datasets]="barChartData"
+                              [labels]="barChartLabels"
+                              [options]="barChartOptions"
+                              [plugins]="barChartPlugins"
+                              [legend]="barChartLegend"
+                              [chartType]="barChartType">
+                            </canvas>
+                          </div>
+                        </div>
+                      </div>

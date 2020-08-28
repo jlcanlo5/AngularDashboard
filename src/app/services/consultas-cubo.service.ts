@@ -1,9 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { AniosModels } from '../interfaces/models';
-import { Observable, of } from 'rxjs';
-import { delay, map } from 'rxjs/operators';
 
 const URL_BASE = environment.ENDPOINTS.CUBO.urlBase;
 
@@ -52,13 +49,5 @@ export class ConsultasCuboService {
   getFiltrosAnio(anio1: string, anio2: string, anio3: string){
     return this.http.get(`${URL_BASE}/VentasAnios/[${anio1}],[${anio2}],[${anio3}]`)
   }
-
-  /*getAniosParaFiltro(term: string = null): Observable<Person[]> {
-    let items = this.getAniosTexto();
-    if (term) {
-        items = items.filter(x => x.anio.toLocaleLowerCase().indexOf(term.toLocaleLowerCase()) > -1);
-    }
-    return of(items).pipe(delay(500));
-  }*/
    
 }

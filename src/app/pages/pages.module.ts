@@ -15,13 +15,17 @@ import { ChartsModule } from 'ng2-charts';
 
 //Importar ngSelect
 import { NgSelectModule } from '@ng-select/ng-select';
+import { Grafica2Component } from './grafica2/grafica2.component';
+import { BarrasComponent } from './barras/barras.component';
 
 @NgModule({
   declarations: [
     DashboardComponent,
     ProgressComponent,
     Grafica1Component,
-    PagesComponent
+    PagesComponent,
+    Grafica2Component,
+    BarrasComponent
   ],
   imports: [
     CommonModule,
