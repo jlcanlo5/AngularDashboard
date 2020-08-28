@@ -55,7 +55,11 @@ export class ConsultasCuboService {
   }
 
   getFiltrosAnioMes(mes: string, anio: string){
-    return this.http.get(`${URL_BASE}/totalFiltros/ventas/${mes}/${anio}`)
+    return this.http.get(`${URL_BASE}totalFiltros/ventas/${mes}/${anio}`)
+  }
+
+  getPruebaFiltros(mes: string, anio: string){
+    return this.http.get(`${URL_BASE}ventasPrueba/filtros/${mes}/${anio}`)
   }
    
 }

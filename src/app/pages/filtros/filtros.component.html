@@ -1,0 +1,31 @@
+<div class="card">
+    <div class="card-body">
+        <p>Seleccionar filtros</p>
+
+        <ng-select
+            [items]="anios$ | async"
+            [multiple]="true"
+            [closeOnSelect]="false"
+            [searchable]="false"
+            bindLabel="anio"
+            placeholder="Seleccionar año"
+            (change)="anio_OnChange($event)"
+            [(ngModel)]="anioSeleccionado">
+        </ng-select>
+
+        <ng-select
+            [items]="meses$ | async"
+            [multiple]="true"
+            [closeOnSelect]="false"
+            [searchable]="false"
+            bindLabel="mes"
+            placeholder="Seleccionar mes"
+            (change)="mes_OnChange($event)"
+            [(ngModel)]="mesSeleccionado">
+        </ng-select>
+
+      <blockquote class="blockquote mb-0">
+        <p>Acumulado de ventas $ {{totalFiltros}}</p>
+      </blockquote>
+    </div>
+  </div>

@@ -14,8 +14,8 @@ export class MultipleComponent implements OnInit {
   @Input() aniosConcatenados: string ='[Dim Tiempo].[Anio].[1996]'
   @Input() mesesConcatenados: string = '[Dim Tiempo].[Mes Nombre].[December]'
 
-  anios$: any={};
-  meses$: any={};
+  anios$: Observable<any>;;
+  meses$: Observable<any>;;
   anioSeleccionado: any={};
   mesSeleccionado: any={};
 
