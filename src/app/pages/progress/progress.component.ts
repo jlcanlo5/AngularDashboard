@@ -94,6 +94,7 @@ export class ProgressComponent implements OnInit {
     this.cuboService.getVentasTotales().subscribe((result: any) => {
       let ventas
       ventas=result.ventasT
+      console.log("Ventas totales ", ventas)
       this.totalVentas='$' + ventas
       return ventas
     })

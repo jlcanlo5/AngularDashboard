@@ -80,11 +80,7 @@ export class BarrasComponent implements OnInit {
 
   fetchCharts(topValue: number, dimensionValue: string){
     this.cuboService.getDataTopN(topValue, dimensionValue, 'DESC').subscribe((result: any) => {
-      console.log('LLAMADA A API NORTHWIND ---> ', result)
-      /*let arrayTmp: any[]=[]
-      result.dimension.forEach(item => {
-        arrayTmp.push()
-      });*/
+      console.log('Resultados de TopN ', result)
 
       this.barChartLabels=result.dimension;
 

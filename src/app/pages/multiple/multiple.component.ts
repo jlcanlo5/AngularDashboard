@@ -22,6 +22,8 @@ export class MultipleComponent implements OnInit {
   constructor(private cuboService: ConsultasCuboService) { }
 
   ngOnInit(): void {
+
+    this.fetchQuery()
     //Cargar combos con años y meses
     this.anioSeleccionado=[{anio: '1996'}]
     this.mesSeleccionado=[{mes: 'December'}]
@@ -68,6 +70,16 @@ export class MultipleComponent implements OnInit {
 
   fetchMesesTexto(){
     this.meses$=this.cuboService.getSoloMeses();
+  }
+
+  fetchQuery(){
+    let mquery
+    mquery='SELECT NON EMPTY { [Measures].[Fact Ventas KPI Ventas Con Descuento] } ON COLUMNS, NON EMPTY { ([Dim Tiempo].[Anio].[Anio].ALLMEMBERS * [Dim Tiempo].[Mes Nombre].[Mes Nombre].ALLMEMBERS ) } ON ROWS FROM [DWH Northwind]'
+    this.cuboService.getQueryCompleto(mquery).subscribe((result: any) => {
+      let ventasFiltroMultiple
+      ventasFiltroMultiple=result.ventasT
+      console.log ("Resultado query completo", ventasFiltroMultiple)
+    })
   }
 
 }

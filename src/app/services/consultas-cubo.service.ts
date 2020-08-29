@@ -61,5 +61,9 @@ export class ConsultasCuboService {
   getPruebaFiltros(mes: string, anio: string){
     return this.http.get(`${URL_BASE}ventasPrueba/filtros/${mes}/${anio}`)
   }
+
+  getQueryCompleto(mQuery: string){
+    return this.http.get(`${URL_BASE}query/${mQuery}`)
+  }
    
 }
