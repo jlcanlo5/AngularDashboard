@@ -1,0 +1,14 @@
+<div class="align-self-center">
+    <ng-select [items]="mesAnio1$ | async"
+        [searchable]="true"
+        bindLabel="descripcion"
+        placeHolder="Mes"
+        [clearable]="true"
+        (change)="mesAnio1_OnChange($event)"
+        (clear)="dimension_OnClear($event)"
+        [(ngModel)]="mes1Seleccionado">
+    </ng-select>
+
+    <h6 class="text-muted m-t-10 m-b-0">Total ventas {{labelMesAnio1}}</h6>
+    <h2 class="m-t-0">{{ventasMesAnio1}}</h2>
+</div>

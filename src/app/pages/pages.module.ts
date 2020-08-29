@@ -19,6 +19,7 @@ import { Grafica2Component } from './grafica2/grafica2.component';
 import { BarrasComponent } from './barras/barras.component';
 import { MultipleComponent } from './multiple/multiple.component';
 import { FiltrosComponent } from './filtros/filtros.component';
+import { MesesComponent } from './meses/meses.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { FiltrosComponent } from './filtros/filtros.component';
     Grafica2Component,
     BarrasComponent,
     MultipleComponent,
-    FiltrosComponent
+    FiltrosComponent,
+    MesesComponent
   ],
   imports: [
     CommonModule,
