@@ -1,3 +1,4 @@
+//Esto es lazyload para no cargar de golpe todos los componentes
 import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
